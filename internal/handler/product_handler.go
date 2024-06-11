@@ -10,8 +10,8 @@ type ProductHandler struct {
 	productController *controller.ProductController
 }
 
-func NewProductHandler(productController *controller.ProductController) ProductHandler {
-	return ProductHandler{
+func NewProductHandler(productController *controller.ProductController) *ProductHandler {
+	return &ProductHandler{
 		productController: productController,
 	}
 }
@@ -30,4 +30,9 @@ func (ph ProductHandler) HandleCreate(ctx *gin.Context) {
 	response := ph.productController.CreateProduct(input.Name, input.Price)
 
 	ctx.JSON(http.StatusCreated, response)
+}
+
+
+func (ph ProductHandler) HandleList(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, ph.productController.ListAll())
 }

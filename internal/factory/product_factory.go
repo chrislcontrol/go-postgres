@@ -12,14 +12,12 @@ func BuildProductHandler(dbSession *gorm.DB) *handler.ProductHandler {
 	// Repository
 	repo := repository.NewProductRepository(dbSession)
 
-	// UseCase
-	useCase := usecase.NewCreateProductUseCase(&repo)
+	// UseCases
+	createProductUseCase := usecase.NewCreateProductUseCase(repo)
+	listProducts := usecase.NewListProducts(repo)
 
 	// Controller
-	ctrl := controller.NewProductController(&useCase)
+	ctrl := controller.NewProductController(createProductUseCase, listProducts)
 
-	// Handler
-	h := handler.NewProductHandler(&ctrl)
-
-	return &h
+	return handler.NewProductHandler(&ctrl)
 }

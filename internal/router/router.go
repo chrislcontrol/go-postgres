@@ -10,7 +10,6 @@ import (
 
 const apiV1 = "/api/v1"
 
-
 func Route(server *gin.Engine, dbSession *gorm.DB) {
 	// Ping
 	server.GET(apiV1+"/ping", func(ctx *gin.Context) {
@@ -21,4 +20,5 @@ func Route(server *gin.Engine, dbSession *gorm.DB) {
 
 	// Products
 	server.POST(apiV1+"/products", factory.BuildProductHandler(dbSession).HandleCreate)
+	server.GET(apiV1+"/products", factory.BuildProductHandler(dbSession).HandleList)
 }

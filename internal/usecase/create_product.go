@@ -9,8 +9,8 @@ type CreateProductUseCase struct {
 	repo *repository.ProductRepository
 }
 
-func NewCreateProductUseCase(repo *repository.ProductRepository) CreateProductUseCase {
-	return CreateProductUseCase{
+func NewCreateProductUseCase(repo *repository.ProductRepository) *CreateProductUseCase {
+	return &CreateProductUseCase{
 		repo: repo,
 	}
 }
