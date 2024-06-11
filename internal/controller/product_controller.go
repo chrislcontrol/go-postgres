@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"github.com/chrislcontrol/go-postgres/usecase"
+	"github.com/chrislcontrol/go-postgres/internal/usecase"
 	"github.com/gin-gonic/gin"
 )
 

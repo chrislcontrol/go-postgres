@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 
-	"github.com/chrislcontrol/go-postgres/factory"
+	"github.com/chrislcontrol/go-postgres/internal/factory"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )

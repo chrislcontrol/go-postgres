@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"github.com/chrislcontrol/go-postgres/entity"
-	"github.com/chrislcontrol/go-postgres/repository"
+	"github.com/chrislcontrol/go-postgres/internal/entity"
+	"github.com/chrislcontrol/go-postgres/internal/repository"
 )
 
 type CreateProductUseCase struct {

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/chrislcontrol/go-postgres/db"
-	"github.com/chrislcontrol/go-postgres/router"
+	"github.com/chrislcontrol/go-postgres/internal/db"
+	"github.com/chrislcontrol/go-postgres/internal/router"
 	"github.com/gin-gonic/gin"
 )
 

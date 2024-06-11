@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/chrislcontrol/go-postgres/entity"
+	"github.com/chrislcontrol/go-postgres/internal/entity"
 	"gorm.io/gorm"
 )
 

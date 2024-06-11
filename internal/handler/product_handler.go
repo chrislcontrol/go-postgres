@@ -2,7 +2,7 @@ package handler
 
 import (
 	"net/http"
-	"github.com/chrislcontrol/go-postgres/controller"
+	"github.com/chrislcontrol/go-postgres/internal/controller"
 	"github.com/gin-gonic/gin"
 )
 

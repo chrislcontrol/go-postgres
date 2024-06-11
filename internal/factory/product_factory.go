@@ -1,10 +1,10 @@
 package factory
 
 import (
-	"github.com/chrislcontrol/go-postgres/controller"
-	"github.com/chrislcontrol/go-postgres/handler"
-	"github.com/chrislcontrol/go-postgres/repository"
-	"github.com/chrislcontrol/go-postgres/usecase"
+	"github.com/chrislcontrol/go-postgres/internal/controller"
+	"github.com/chrislcontrol/go-postgres/internal/handler"
+	"github.com/chrislcontrol/go-postgres/internal/repository"
+	"github.com/chrislcontrol/go-postgres/internal/usecase"
 	"gorm.io/gorm"
 )
 

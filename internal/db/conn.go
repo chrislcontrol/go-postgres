@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/chrislcontrol/go-postgres/entity"
+	"github.com/chrislcontrol/go-postgres/internal/entity"
 	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
