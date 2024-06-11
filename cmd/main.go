@@ -13,8 +13,8 @@ const (
 
 func main() {
 	server := gin.Default()
-	dbSession := db.ConnectDB()
-	router.Route(server, dbSession)
+	db.StartDBSession()
+	router.Route(server)
 	server.Run(host + ":" + port)
 
 }

@@ -5,12 +5,14 @@ import (
 
 	"github.com/chrislcontrol/go-postgres/internal/factory"
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 const apiV1 = "/api/v1"
 
-func Route(server *gin.Engine, dbSession *gorm.DB) {
+// Handlers
+var productHandler = factory.BuildProductHandler()
+
+func Route(server *gin.Engine) {
 	// Ping
 	server.GET(apiV1+"/ping", func(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{
@@ -19,6 +21,6 @@ func Route(server *gin.Engine, dbSession *gorm.DB) {
 	})
 
 	// Products
-	server.POST(apiV1+"/products", factory.BuildProductHandler(dbSession).HandleCreate)
-	server.GET(apiV1+"/products", factory.BuildProductHandler(dbSession).HandleList)
+	server.POST(apiV1+"/products", productHandler.HandleCreate)
+	server.GET(apiV1+"/products", productHandler.HandleList)
 }

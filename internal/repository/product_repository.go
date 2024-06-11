@@ -2,6 +2,7 @@ package repository
 
 import (
 	"github.com/chrislcontrol/go-postgres/internal/entity"
+	"github.com/rosberry/go-pagination"
 	"gorm.io/gorm"
 )
 
@@ -31,9 +32,14 @@ func (repo ProductRepository) Create(name string, price float64) entity.Product 
 }
 
 
-func (repo ProductRepository) ListAll() []entity.Product {
+func (repo ProductRepository) ListPaginated(paginator *pagination.Paginator) []entity.Product {
 	var products []entity.Product
-	repo.conn.Find(&products)
+	q := repo.conn.Model(&entity.Product{})
+
+	err := paginator.Find(q, &products)
+	if err != nil {
+		panic(err)
+	}
 
 	return products
 }

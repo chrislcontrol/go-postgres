@@ -1,8 +1,10 @@
 package controller
 
 import (
+	"github.com/chrislcontrol/go-postgres/internal/entity"
 	"github.com/chrislcontrol/go-postgres/internal/usecase"
 	"github.com/gin-gonic/gin"
+	"github.com/rosberry/go-pagination"
 )
 
 type ProductController struct {
@@ -30,10 +32,14 @@ func (pc ProductController) CreateProduct(name string, price float64) gin.H {
 	}
 }
 
-func (pc ProductController) ListAll() gin.H {
-	products := pc.listProducts.Execute()
+func (pc ProductController) ListAll(paginator *pagination.Paginator) any {
+	products := pc.listProducts.Execute(paginator)
 
-	return gin.H{
-		"data": products,
+	return struct {
+		Pagination *pagination.PageInfo `json:"pagination"`
+		Results []entity.Product `json:"results"`
+	} {
+		Pagination: paginator.PageInfo,
+		Results: products,
 	}
 }

@@ -2,15 +2,15 @@ package factory
 
 import (
 	"github.com/chrislcontrol/go-postgres/internal/controller"
+	"github.com/chrislcontrol/go-postgres/internal/db"
 	"github.com/chrislcontrol/go-postgres/internal/handler"
 	"github.com/chrislcontrol/go-postgres/internal/repository"
 	"github.com/chrislcontrol/go-postgres/internal/usecase"
-	"gorm.io/gorm"
 )
 
-func BuildProductHandler(dbSession *gorm.DB) *handler.ProductHandler {
+func BuildProductHandler() *handler.ProductHandler {
 	// Repository
-	repo := repository.NewProductRepository(dbSession)
+	repo := repository.NewProductRepository(db.GetDBSession())
 
 	// UseCases
 	createProductUseCase := usecase.NewCreateProductUseCase(repo)

@@ -2,8 +2,12 @@ package handler
 
 import (
 	"net/http"
+
 	"github.com/chrislcontrol/go-postgres/internal/controller"
+	"github.com/chrislcontrol/go-postgres/internal/db"
+	"github.com/chrislcontrol/go-postgres/internal/entity"
 	"github.com/gin-gonic/gin"
+	"github.com/rosberry/go-pagination"
 )
 
 type ProductHandler struct {
@@ -32,7 +36,25 @@ func (ph ProductHandler) HandleCreate(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, response)
 }
 
-
 func (ph ProductHandler) HandleList(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, ph.productController.ListAll())
+	var query struct {
+		Limit uint `form:"limit"`
+	}
+	ctx.ShouldBindQuery(&query)
+
+	if query.Limit == 0 {
+		query.Limit = 10
+	}
+
+	paginator, err := pagination.New(pagination.Options{
+		GinContext:    ctx,
+		DB:            db.GetDBSession(),
+		Model:         &entity.Product{},
+		Limit:         uint(query.Limit),
+		DefaultCursor: nil,
+	})
+	if err != nil {
+		panic(err)
+	}
+	ctx.JSON(http.StatusOK, ph.productController.ListAll(paginator))
 }
